@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/auth"; // cambia al puerto de tu backend
+const API_URL = "http://localhost:5000/auth"; // apunta a tu backend
 
 function Login({ setToken }) {
   const [email, setEmail] = useState("");
@@ -29,4 +29,3 @@ function Login({ setToken }) {
 }
 
 export default Login;
-

@@ -45,4 +45,3 @@ function Profile({ token }) {
 }
 
 export default Profile;
-

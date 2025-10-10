@@ -8,7 +8,7 @@ function App() {
   const [token, setToken] = useState("");
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+    <div style={{ padding: "20px" }}>
       <h1>App de Servicios</h1>
       <div>
         <button onClick={() => setPage("login")}>Login</button>
@@ -23,4 +23,3 @@ function App() {
 }
 
 export default App;
-

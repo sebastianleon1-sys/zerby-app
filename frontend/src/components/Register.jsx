@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/auth"; // cambia al puerto de tu backend
+const API_URL = "http://localhost:5000/auth";
 
 function Register({ setToken }) {
   const [email, setEmail] = useState("");
@@ -21,7 +21,7 @@ function Register({ setToken }) {
       data.direccion = direccion;
     } else if (role === "PROVEEDOR") {
       data.nombre = nombre;
-      data.servicios = servicios.split(","); // lista de servicios separados por coma
+      data.servicios = servicios.split(",");
     }
 
     try {
@@ -58,4 +58,3 @@ function Register({ setToken }) {
 }
 
 export default Register;
-
