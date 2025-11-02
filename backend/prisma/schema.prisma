@@ -1,8 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// prisma/schema.prisma
 
 generator client {
   provider = "prisma-client-js"
@@ -17,31 +13,100 @@ model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   password  String
-  role      String   // "CLIENTE" o "PROVEEDOR"
+  role      Role
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
+  // Relaciones 1:1
   cliente   Cliente?
   proveedor Proveedor?
+
+  // Relaciones 1:N
+  reviews Review[] @relation("UserReviews")
+  files   File[]   @relation("UserFiles")
+}
+
+enum Role {
+  CLIENTE
+  PROVEEDOR
 }
 
 model Cliente {
-  id       Int    @id @default(autoincrement())
-  userId   Int    @unique
-  nombre   String
-  telefono String
-  direccion String
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  nombre    String
+  telefono  String?
+  direccion String?
+  lat       Float? // coordenadas
+  lng       Float?
+  createdAt DateTime @default(now())
 
-  user     User   @relation(fields: [userId], references: [id])
+  // Relación inversa
+  user User @relation(fields: [userId], references: [id])
 }
 
 model Proveedor {
-  id         Int    @id @default(autoincrement())
-  userId     Int    @unique
-  nombre     String
-  servicios  String
-  rating     Float  @default(0)
-  verificado Boolean @default(false)
+  id          Int      @id @default(autoincrement())
+  userId      Int      @unique
+  nombre      String
+  descripcion String?
+  servicios   String[] // lista de servicios (por ahora array)
+  rating      Float?   @default(0)
+  telefono    String?
+  direccion   String?
+  lat         Float?
+  lng         Float?
+  createdAt   DateTime @default(now())
 
-  user       User   @relation(fields: [userId], references: [id])
+  // Relación inversa
+  user User @relation(fields: [userId], references: [id])
+
+  // Relaciones 1:N
+  anuncios Anuncio[]
+}
+
+model Anuncio {
+  id          Int      @id @default(autoincrement())
+  proveedorId Int
+  titulo      String
+  descripcion String
+  precio      Float
+  categoria   String
+  lat         Float?
+  lng         Float?
+  createdAt   DateTime @default(now())
+
+  // Relaciones
+  proveedor Proveedor @relation(fields: [proveedorId], references: [id])
+  reviews   Review[]
+  files     File[]
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+
+  // Relación con el usuario que escribe la reseña
+  userId Int
+  user   User @relation("UserReviews", fields: [userId], references: [id])
+
+  // Relación con el anuncio que fue reseñado
+  anuncioId Int
+  anuncio   Anuncio @relation(fields: [anuncioId], references: [id])
+}
+
+model File {
+  id        Int      @id @default(autoincrement())
+  url       String
+  type      String?
+  createdAt DateTime @default(now())
+
+  // Relación con el usuario que sube el archivo
+  userId Int
+  user   User @relation("UserFiles", fields: [userId], references: [id])
+
+  // Opcionalmente, puede estar asociado a un anuncio
+  anuncioId Int?
+  anuncio   Anuncio? @relation(fields: [anuncioId], references: [id])
 }
