@@ -1,35 +1,17 @@
 #Zerby app
+DOCUMENTACION DEL BACKEND:
 1.  **Clonar el repositorio:**
     ```bash
-    git clone [URL_DE_TU_REPOSITORIO]
+    git clone https://github.com/sebastianleon1-sys/zerby-app
     cd tu-repositorio
     ```
 
-2.  **Instalar dependencias:**
+2.  **Instalar dependencias, dentro del backend:**
     ```bash
     npm install
     ```
 
-3.  **Configurar variables de entorno (`.env`):**
-    Crea un archivo `.env` en la raíz del proyecto con tus credenciales:
-    ```env
-    # Conexión a tu base de datos PostgreSQL
-    DATABASE_URL="postgresql://user:password@localhost:5432/mi_base_de_datos"
-
-    # Puerto del servidor
-    PORT=3000
-
-    # Clave secreta para la firma de tokens JWT
-    JWT_SECRET="UNA-CLAVE-SECRETA-LARGA-Y-COMPLEJA"
-    ```
-
-4.  **Aplicar Migraciones de DB:**
-    Esto creará todas las tablas (`User`, `Cliente`, `Proveedor`, etc.) definidas en `schema.prisma`.
-    ```bash
-    npx prisma migrate dev
-    ```
-
-5.  **Iniciar el Servidor:**
+3.  **Iniciar el Servidor:**
     ```bash
     npm run dev
     ```
