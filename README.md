@@ -33,7 +33,7 @@ El proyecto sigue el patrón **Controller-Service-Repository** (implementado ví
 
 ---
 
-## Documentación de la API (Referencia Frontend)
+## Documentación de la API (ESTO ES PARA EL FRONTEND)
 
 **URL Base:** `http://localhost:3000/api`
 
