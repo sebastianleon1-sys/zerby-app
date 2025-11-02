@@ -19,7 +19,7 @@ DOCUMENTACION DEL BACKEND:
 
 ---
 
-## 📂 Arquitectura del Proyecto (Para Desarrollo Interno)
+## Arquitectura del Proyecto (Para Desarrollo Interno)
 
 El proyecto sigue el patrón **Controller-Service-Repository** (implementado vía Prisma).
 
@@ -33,11 +33,11 @@ El proyecto sigue el patrón **Controller-Service-Repository** (implementado ví
 
 ---
 
-## 📚 Documentación de la API (Referencia Frontend)
+## Documentación de la API (Referencia Frontend)
 
 **URL Base:** `http://localhost:3000/api`
 
-### 🔑 Autenticación (Header)
+### Autenticación (Header)
 
 Para todas las rutas protegidas, usar el token en el encabezado:
 
@@ -193,7 +193,7 @@ Para todas las rutas protegidas, usar el token en el encabezado:
 
 -----
 
-### 🚨 Códigos de Estado y Manejo de Errores
+### Códigos de Estado y Manejo de Errores
 
 | Código | Clase de Error | Significado para el Frontend |
 | :--- | :--- | :--- |
